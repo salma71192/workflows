@@ -30,7 +30,7 @@ gulp.task('coffee', function() {
 
 
 // Concat js files in one script and add browserify to include jquery and mustache libraries
-gulp.task('js', function() { 
+gulp.task('js' , function() { 
 
 	gulp.src(jsSources)
 	.pipe(concat('script.js'))
@@ -50,6 +50,7 @@ gulp.task('sass', function() {
 	    sass: 'components/sass',
 	    style: 'expanded'
 	    }))
-	//.pipe(gulp.dest('builds/development/css'));
 
 });
+
+gulp.task('all', ['coffee', 'js', 'sass']);
