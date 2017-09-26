@@ -1,13 +1,29 @@
 var gulp = require('gulp'),
 	gulputil = require('gulp-util'),
 	coffee = require('gulp-coffee'),
-	coffeescripts = ['components/coffee/tagline.coffee'];
+	concat = require('gulp-concat'),
+	coffeeSources = ['components/coffee/tagline.coffee'],
+	jsSources = [
+	'components/scripts/pixgrid.js',
+	'components/scripts/rclick.js',
+	'components/scripts/tagline.js',
+	'components/scripts/template.js'
+	];
 
 
 gulp.task('coffee', function() {
 
-	gulp.src(coffeescripts)
+	gulp.src(coffeeSources)
 	.pipe(coffee({ bare:true }).on('error',gulputil.log))
 	.pipe(gulp.dest('components/scripts'));
+
+});
+
+gulp.task('js', function() {
+
+	gulp.src(jsSources)
+	.pipe(concat('script.js'))
+	.pipe(gulp.dest('builds/development/js/'));
+	
 
 });
