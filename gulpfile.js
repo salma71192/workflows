@@ -1,9 +1,13 @@
 var gulp = require('gulp'),
-	gulputil = require('gulp-util');
+	gulputil = require('gulp-util'),
+	coffee = require('gulp-coffee'),
+	coffeescripts = ['components/coffee/tagline.coffee'];
 
 
-gulp.task('log', function() {
+gulp.task('coffee', function() {
 
-	gulputil.log('Helloooooooooooooooooo ');
+	gulp.src(coffeescripts)
+	.pipe(coffee({ bare:true }).on('error',gulputil.log))
+	.pipe(gulp.dest('components/scripts'));
 
 });
